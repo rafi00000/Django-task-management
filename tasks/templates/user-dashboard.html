@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+    <title>Dashboard</title>
+</head>
+<body class="max-w-[] mx-auto font-mono">
+    <header class="p-4 flex justify-between items-center">
+        <p class="text-2xl font-bold font-mono">Dashboard</p>
+        <!-- dashboard right side icon here -->
+        <div class="flex justify-around items-center gap-4">
+            <p class="p-2 border rounded-full font-bold text-xl hover:bg-gray-100">O</p>
+            <p class="p-2 border rounded-full font-bold text-xl bg-sky-4v b 00 w-10 h-10 text-center">B</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- info cards -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-4/5 mx-auto mt-4">
+            <!-- card -->
+            <div class="flex justify-between items-center rounded-md bg-white drop-shadow-lg p-4">
+                <div class="flex flex-col gap-2">
+                    <p class="text-xl">Total Task</p>
+                    <p class="text-3xl font-semibold">3</p>
+                    <p>111 last month</p>   
+                </div>
+                <div>
+                    <p class="text-2xl border rounded-full">O</p>
+                </div>
+            </div>
+            <!-- card -->
+            <div class="flex justify-between items-center rounded-md bg-white drop-shadow-lg p-4">
+                <div class="flex flex-col gap-2">
+                    <p class="text-xl">Total Task</p>
+                    <p class="text-3xl font-semibold">3</p>
+                    <p>111 last month</p>   
+                </div>
+                <div>
+                    <p class="text-2xl border rounded-full">O</p>
+                </div>
+            </div>
+            <!-- card -->
+            <div class="flex justify-between items-center rounded-md bg-white drop-shadow-lg p-4">
+                <div class="flex flex-col gap-2">
+                    <p class="text-xl">Total Task</p>
+                    <p class="text-3xl font-semibold">3</p>
+                    <p>111 last month</p>   
+                </div>
+                <div>
+                    <p class="text-2xl border rounded-full">O</p>
+                </div>
+            </div>
+            <!-- card -->
+            <div class="flex justify-between items-center rounded-md bg-white drop-shadow-lg p-4">
+                <div class="flex flex-col gap-2">
+                    <p class="text-xl">Total Task</p>
+                    <p class="text-3xl font-semibold">3</p>
+                    <p>111 last month</p>   
+                </div>
+                <div>
+                    <p class="text-2xl border rounded-full">O</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- task section -->
+
+        <section class="flex justify-between items-center gap-4 flex-col lg:flex-row mx-auto mt-4 w-4/5">
+            <!-- Today's task -->
+            <div class="bg-white rounded-md p-4 drop-shadow-lg w-1/2 h-52">
+                <h2 class="text-2xl font-semibold">Today's task</h2>
+                <div class="flex justify-between items-center">
+                    <!-- task list -->
+                    <ul class="list-disc pl-4">
+                        <li>Complete project Proposal</li>
+                        <li>Complete project Proposal</li>
+                        <li>Complete project Proposal</li>
+                    </ul>
+                    <ul class="list-none">
+                        <li>high</li>
+                        <li>Medium</li>
+                        <li>Low</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- All task -->
+             <div class="bg-white rounded-md p-4 drop-shadow-lg w-1/2 h-52">
+                <h2 class="text-2xl font-semibold">All task</h2>
+                <table class="table-auto w-full text-left">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span>Task Title</span>
+                            </th>
+                            <th>Priority</th>
+                            <th>Team</th>
+                            <th>Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Test Proj</td>
+                            <td>High</td>
+                            <td>Team A</td>
+                            <td>12/12/2021</td>
+                        </tr>
+                        <tr>
+                            <td>Test Proj</td>
+                            <td>High</td>
+                            <td>Team A</td>
+                            <td>12/12/2021</td>
+                        </tr>
+                        <tr>
+                            <td>Test Proj</td>
+                            <td>High</td>
+                            <td>Team A</td>
+                            <td>12/12/2021</td>
+                        </tr>
+                </table>
+             </div>
+        </section>
+    </main>
+
+</body>
+</html>
