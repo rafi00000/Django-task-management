@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% block title %}{% endblock title %}</title>
+  </head>
+  <body class="max-w-7xl mx-auto font-mono min-h-screen">
+    <header class="p-4 flex justify-between items-center">
+      <p class="text-2xl font-bold font-mono">Dashboard</p>
+      {% comment %} <!-- dashboard right side icon here --> {% endcomment %}
+      <div class="flex justify-around items-center gap-4">
+        <p class="p-2 border rounded-full font-bold text-xl hover:bg-gray-100">
+          O
+        </p>
+        <p
+          class="p-2 border rounded-full font-bold text-xl bg-sky-4v b 00 w-10 h-10 text-center"
+        >
+          B
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-4/5 mx-auto mt-4">
+        <!-- card -->
+        <div
+          class="flex justify-between items-center rounded-md bg-white drop-shadow-lg p-4"
+        >
+          <div class="flex flex-col gap-2">
+            <p class="text-xl">Total Task</p>
+            <p class="text-3xl font-semibold">3</p>
+            <p>111 last month</p>
+          </div>
+          <div>
+            <p class="text-2xl border rounded-full">O</p>
+          </div>
+        </div>
+        <!-- card -->
+        <div
+          class="flex justify-between items-center rounded-md bg-white drop-shadow-lg p-4"
+        >
+          <div class="flex flex-col gap-2">
+            <p class="text-xl">Total Task</p>
+            <p class="text-3xl font-semibold">3</p>
+            <p>111 last month</p>
+          </div>
+          <div>
+            <p class="text-2xl border rounded-full">O</p>
+          </div>
+        </div>
+        <!-- card -->
+        <div
+          class="flex justify-between items-center rounded-md bg-white drop-shadow-lg p-4"
+        >
+          <div class="flex flex-col gap-2">
+            <p class="text-xl">Total Task</p>
+            <p class="text-3xl font-semibold">3</p>
+            <p>111 last month</p>
+          </div>
+          <div>
+            <p class="text-2xl border rounded-full">O</p>
+          </div>
+        </div>
+        <!-- card -->
+        <div
+          class="flex justify-between items-center rounded-md bg-white drop-shadow-lg p-4"
+        >
+          <div class="flex flex-col gap-2">
+            <p class="text-xl">Total Task</p>
+            <p class="text-3xl font-semibold">3</p>
+            <p>111 last month</p>
+          </div>
+          <div>
+            <p class="text-2xl border rounded-full">O</p>
+          </div>
+        </div>
+      </section>
+
+       {% block tasks %}
+
+       {% endblock tasks %}
+    </main>
+  {% comment %} footer {% endcomment %}
+    {% include "footer.html" %}
+  </body>
+</html>
