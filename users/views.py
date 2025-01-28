@@ -9,7 +9,6 @@ from django.shortcuts import render
 
 def home(req):
     return HttpResponse("Welcome to the task management system home")
-    pass
 
 def contact_page(req):
     return HttpResponse("Welcome to contact page")

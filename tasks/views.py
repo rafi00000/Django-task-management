@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from tasks.forms import TaskForm
+from tasks.models import Employee
 
 # Create your views here.
 
@@ -20,4 +22,9 @@ def context_req(request):
     return render(request, 'context.html', context)
 
 def create_task(request):
-    return render(request, "task_form.html")
+    employees = Employee.objects.all()
+    form = TaskForm(employees=employees)
+    context = {
+        "form": form
+    }
+    return render(request, "task_form.html", context)
