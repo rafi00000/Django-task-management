@@ -18,3 +18,6 @@ def context_req(request):
         'address': '123, Main Street, City, Country'
     }
     return render(request, 'context.html', context)
+
+def create_task(request):
+    return render(request, "task_form.html")
