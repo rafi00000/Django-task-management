@@ -1,15 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    <title>Create task</title>
 </head>
 <body>
-    <form method="POST">
+    <div>
+        {% if message %}
+            <p>{{message}}</p>
+        {% endif %}
+    </div>
+    <form method="POST" class="w-2/4 mx-auto mt-10">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">Submit</button>
+        <button type="submit" class="bg-rose-600 text-white px-4 py-2 rounded-md ">Submit</button>
     </form>
 </body>
 </html>
