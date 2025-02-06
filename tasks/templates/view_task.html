@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="">
+    <h1 class="text-4xl text-teal-500 text-center border">All Tasks</h1>
+    <div>
+        {% for task in tasks %}
+            <li>{{task.title}} - {{task.status}} - {{task.due_date}} - {{task.details.priority}}</li>
+        {% endfor %}
+    </div>
+
+    <h1 class="text-4xl text-teal-500 text-center border">Single Task</h1>
+    <div>
+        <li>{{single_task}}</li>
+    </div>
+    <h1 class="text-4xl text-teal-500 text-center border">Pending tasks</h1>
+    <div>
+        {% for task in pending_tasks %}
+            <li>{{task.title}} - {{task.status}} - {{task.due_date}} - {{task.details.priority}}</li>
+        {% endfor %}
+    </div>
+
+    <h1 class="text-4xl text-teal-500 text-center border">High Medium Priority</h1>
+    <div>
+        {% for prio in high_medium_priority %}
+            <li>{{prio.priority}}</li>
+        {% endfor %}
+    </div>
+    <h1 class="text-4xl text-teal-500 text-center border">filtered task</h1>
+    <div>
+        {% for task in itask %}
+            <li>{{task}}</li>
+        {% endfor %}
+    </div>
+</body>
+</html>

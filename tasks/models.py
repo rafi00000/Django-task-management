@@ -17,11 +17,17 @@ class Project(models.Model):
         return self.name
 
 class Task(models.Model):
+    status_choices = [
+        ('P', 'Pending'),
+        ('I', 'In Progress'),
+        ('C', 'Completed')
+    ]
     assigned_to = models.ManyToManyField(Employee)
     project = models.ForeignKey("Project", on_delete=models.CASCADE, default=1)
     title = models.CharField(max_length=250)
     description = models.TextField()
     due_date = models.DateField()
+    status = models.CharField(max_length=1, choices=status_choices, default='P')
     is_completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -36,6 +42,9 @@ class TaskDetail(models.Model):
         ('M', 'Medium'),
         ('L', 'Low')
     )
-    task = models.OneToOneField(Task, on_delete=models.CASCADE)
+    task = models.OneToOneField(Task, on_delete=models.CASCADE, related_name="details")
     assigned_to = models.CharField(max_length=100)
     priority = models.CharField(max_length=1, choices=PRIORITY_CHOICES, default='L')
+
+    def __str__(self):
+        return self.priority

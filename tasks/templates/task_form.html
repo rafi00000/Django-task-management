@@ -8,15 +8,18 @@
     <title>Create task</title>
 </head>
 <body>
-    <div>
-        {% if message %}
-            <p>{{message}}</p>
-        {% endif %}
+    <h1 class="text-center text-3xl mt-5 font-semibold">Create Task</h1>
+    <div class="w-1/2 mx-auto mt-10 border border-black p-5 rounded-md">
+        <div>
+            {% if message %}
+                <p>{{message}}</p>
+            {% endif %}
+        </div>
+        <form method="POST" class="flex flex-col gap-5">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="bg-rose-600 text-white px-4 py-2 rounded-md ">Submit</button>
+        </form>
     </div>
-    <form method="POST" class="w-2/4 mx-auto mt-10">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="bg-rose-600 text-white px-4 py-2 rounded-md ">Submit</button>
-    </form>
 </body>
 </html>

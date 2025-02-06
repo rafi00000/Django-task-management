@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from tasks.forms import TaskModelForm
-from tasks.models import Employee, Task
+from tasks.models import Employee, Task, TaskDetail
+from datetime import date
 
 # Create your views here.
 
@@ -34,3 +35,38 @@ def create_task(request):
         "form": task_form
     }
     return render(request, "task_form.html", context)
+
+
+# def view_tasks(request):
+#     # retrieve all tasks from the database
+#     task = Task.objects.all()
+
+#     #retrieve a specific task from the database
+#     single_task = Task.objects.get(id=1)
+
+#     # filter tasks based on a specific condition
+#     pending_tasks = Task.objects.filter(status="P")
+#     due_today = Task.objects.filter(due_date=date.today())
+#     """Show the task whose priority is not low / only high and medium """
+#     high_medium_priority = TaskDetail.objects.exclude(priority="L")
+
+#     # show the task using contains. It is case-insensitive
+#     itask = Task.objects.filter(title__icontains="dev")
+#     context = {
+#         "tasks": task,
+#         "single_task": single_task,
+#         "pending_tasks": pending_tasks,
+#         "today_due": due_today,
+#         "high_medium_priority": high_medium_priority,
+#         "itask": itask
+#     }
+#     return render(request, "view_task.html", context)
+
+
+def view_tasks(request):
+    # select_related query
+    tasks = Task.objects.select_related("details").all()
+    context = {
+        "tasks": tasks
+    }
+    return render(request, "view_task.html", context)
