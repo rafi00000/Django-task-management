@@ -3,6 +3,7 @@ from django.shortcuts import render
 from tasks.forms import TaskModelForm
 from tasks.models import Employee, Task, TaskDetail
 from datetime import date
+from django.db.models import Count, Q
 
 # Create your views here.
 
@@ -11,17 +12,17 @@ def user_dashboard(request):
 
 def admin_dashboard(request):
     # data retrieval from the database
-    total_task = Task.objects.all().count()
-    pending_task = Task.objects.filter(status="P").count()
-    completed_task = Task.objects.filter(status="C").count()
-    in_progress_task = Task.objects.filter(status="I").count()
     all_tasks = Task.objects.select_related("details").all()
 
+    counts = Task.objects.aggregate(
+        total_task= Count("id"),
+        pending_task= Count("id", filter=Q(status="P")),
+        completed_task= Count("id", filter=Q(status="C")),
+        in_progress_task= Count("id", filter=Q(status="I"))
+    )
+
     context = {
-        "total_task": total_task,
-        "pending_task": pending_task,
-        "completed_task": completed_task,
-        "task_in_progress": in_progress_task,
+        "counts": counts,
         "all_tasks": all_tasks
     }
     return render(request, 'dashboard/admin-dashboard.html', context)
