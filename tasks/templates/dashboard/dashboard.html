@@ -31,7 +31,7 @@
         >
           <div class="flex flex-col gap-2">
             <p class="text-xl">Total Task</p>
-            <p class="text-3xl font-semibold">3</p>
+            <p class="text-3xl font-semibold">{{total_task}}</p>
             <p>111 last month</p>
           </div>
           <div>
@@ -43,8 +43,10 @@
           class="flex justify-between items-center rounded-md bg-white drop-shadow-lg p-4"
         >
           <div class="flex flex-col gap-2">
-            <p class="text-xl">Total Task</p>
-            <p class="text-3xl font-semibold">3</p>
+            <p class="text-xl">Completed Task</p>
+            <p class="text-3xl font-semibold">
+              {{completed_task}}
+            </p>            
             <p>111 last month</p>
           </div>
           <div>
@@ -56,8 +58,8 @@
           class="flex justify-between items-center rounded-md bg-white drop-shadow-lg p-4"
         >
           <div class="flex flex-col gap-2">
-            <p class="text-xl">Total Task</p>
-            <p class="text-3xl font-semibold">3</p>
+            <p class="text-xl">Task in progress</p>
+            <p class="text-3xl font-semibold">{{task_in_progress}}</p>
             <p>111 last month</p>
           </div>
           <div>
@@ -69,8 +71,8 @@
           class="flex justify-between items-center rounded-md bg-white drop-shadow-lg p-4"
         >
           <div class="flex flex-col gap-2">
-            <p class="text-xl">Total Task</p>
-            <p class="text-3xl font-semibold">3</p>
+            <p class="text-xl">Todos</p>
+            <p class="text-3xl font-semibold">{{pending_task}}</p>
             <p>111 last month</p>
           </div>
           <div>
@@ -78,7 +80,6 @@
           </div>
         </div>
       </section>
-
        {% block tasks %}
 
        {% endblock tasks %}

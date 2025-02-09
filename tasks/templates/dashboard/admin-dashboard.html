@@ -12,24 +12,14 @@
       </tr>
     </thead>
     <tbody>
+    {% for task in all_tasks %}
       <tr class="">
-        <td class="p-2">Complete project Proposal</td>
-        <td class="p-2">High</td>
+        <td class="p-2">{{task.title}}</td>
+        <td class="p-2">{{task.details.get_priority_display}}</td>
         <td class="p-2">Team A</td>
-        <td class="p-2">2021-09-01</td>
+        <td class="p-2">{{task.created_at|timesince}} ago</td>
       </tr>
-      <tr class="">
-        <td class="p-2">Complete project Proposal</td>
-        <td class="p-2">High</td>
-        <td class="p-2">Team A</td>
-        <td class="p-2">2021-09-01</td>
-      </tr>
-      <tr class="">
-        <td class="p-2">Complete project Proposal</td>
-        <td class="p-2">High</td>
-        <td class="p-2">Team A</td>
-        <td class="p-2">2021-09-01</td>
-      </tr>
+    {% endfor %}
     </tbody>
   </table>
 </section>

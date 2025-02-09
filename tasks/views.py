@@ -10,7 +10,21 @@ def user_dashboard(request):
     return render(request, 'dashboard/user-dashboard.html')
 
 def admin_dashboard(request):
-    return render(request, 'dashboard/admin-dashboard.html')
+    # data retrieval from the database
+    total_task = Task.objects.all().count()
+    pending_task = Task.objects.filter(status="P").count()
+    completed_task = Task.objects.filter(status="C").count()
+    in_progress_task = Task.objects.filter(status="I").count()
+    all_tasks = Task.objects.select_related("details").all()
+
+    context = {
+        "total_task": total_task,
+        "pending_task": pending_task,
+        "completed_task": completed_task,
+        "task_in_progress": in_progress_task,
+        "all_tasks": all_tasks
+    }
+    return render(request, 'dashboard/admin-dashboard.html', context)
 
 
 def context_req(request):
@@ -65,7 +79,7 @@ def create_task(request):
 
 def view_tasks(request):
     # select_related query
-    tasks = Task.objects.select_related("details").all()
+    tasks = Task.objects.select_related("employee").all()
     context = {
         "tasks": tasks
     }
