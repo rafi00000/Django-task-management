@@ -1,9 +1,10 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from tasks.forms import TaskModelForm
+from django.shortcuts import render, redirect
+from tasks.forms import TaskModelForm, TaskDetailModelForm
 from tasks.models import Employee, Task, TaskDetail
 from datetime import date
 from django.db.models import Count, Q
+from django.contrib import messages
 
 # Create your views here.
 
@@ -20,6 +21,15 @@ def admin_dashboard(request):
         completed_task= Count("id", filter=Q(status="C")),
         in_progress_task= Count("id", filter=Q(status="I"))
     )
+
+    # conditionally retrieve all tasks from the database    
+    type = request.GET.get("type")
+    if type == "completed":
+        all_tasks = Task.objects.filter(status="C")
+    elif type == "pending":
+        all_tasks = Task.objects.filter(status="P")
+    elif type == "in_progress":
+        all_tasks = Task.objects.filter(status="I")
 
     context = {
         "counts": counts,
@@ -38,16 +48,46 @@ def context_req(request):
     return render(request, 'context.html', context)
 
 def create_task(request):
-    employees = Employee.objects.all()
     task_form = TaskModelForm()
+    task_detail_form = TaskDetailModelForm()
+
     if request.method == "POST":
         task_form = TaskModelForm(request.POST)
-        if task_form.is_valid():
-            task_form.save()
-            return render(request, 'task_form.html', {'form': task_form, 'message': 'Task created successfully!'})
+        task_detail_form = TaskDetailModelForm(request.POST)
+        if task_form.is_valid() and task_detail_form.is_valid():
+            task = task_form.save()
+            task_detail = task_detail_form.save(commit=False)
+            task_detail.task = task
+            task_detail.save()
+            messages.success(request, "Task created successfully")
+            return redirect("create-task")
 
     context = {
-        "form": task_form
+        "task_form": task_form,
+        "task_detail_form": task_detail_form
+    }
+    return render(request, "task_form.html", context)
+
+def update_task(request, id):
+    print("Update id: ", id)
+    old_task = Task.objects.get(id=id)
+    task_form = TaskModelForm(instance=old_task)
+    task_detail_form = TaskDetailModelForm(instance=old_task)
+
+    if request.method == "POST":
+        task_form = TaskModelForm(request.POST)
+        task_detail_form = TaskDetailModelForm(request.POST)
+        if task_form.is_valid() and task_detail_form.is_valid():
+            task = task_form.save()
+            task_detail = task_detail_form.save(commit=False)
+            task_detail.task = task
+            task_detail.save()
+            messages.success(request, "Task created successfully")
+            return redirect("create-task")
+
+    context = {
+        "task_form": task_form,
+        "task_detail_form": task_detail_form
     }
     return render(request, "task_form.html", context)
 

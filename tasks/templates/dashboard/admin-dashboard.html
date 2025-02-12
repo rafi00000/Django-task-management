@@ -9,6 +9,7 @@
         <th>Priority</th>
         <th>Team</th>
         <th>Created At</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +19,9 @@
         <td class="p-2">{{task.details.get_priority_display}}</td>
         <td class="p-2">Team A</td>
         <td class="p-2">{{task.created_at|timesince}} ago</td>
+        <td>
+          <a href="{% url 'update-task' task.id %}"><button class="text-black border p-2 border-black">Edit</button></a>
+        </td>
       </tr>
     {% endfor %}
     </tbody>
