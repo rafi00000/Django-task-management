@@ -22,7 +22,6 @@ class StyleFormMixin:
     def apply_styled_widget(self):
         for field_name, field in self.fields.items():
             if isinstance(field.widget, forms.TextInput):
-                print("powchaisi")
                 field.widget.attrs.update({
                     'class': f"{self.default_classes}",
                     'placeholder': f'Enter {field_name}'
