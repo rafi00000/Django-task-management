@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
-from users.forms import RegisterForm
+from users.forms import CustomRegisterForm
 
 # Create your views here.
 # work with db
@@ -19,9 +19,9 @@ def contact_page(req):
 
 def sign_up(req):
     if req.method == "GET":
-        user_form = RegisterForm()
+        user_form = CustomRegisterForm()
     if req.method == "POST":
-        user_form = RegisterForm(req.POST)
+        user_form = CustomRegisterForm(req.POST)
         if user_form.is_valid():
             user_form.save()
 

@@ -1,4 +1,7 @@
 from django.db import models
+from django.db.models.signals import post_save, m2m_changed
+from django.dispatch import receiver
+from django.core.mail import send_mail
 
 # Create your models here.
 
@@ -49,3 +52,20 @@ class TaskDetail(models.Model):
 
     def __str__(self):
         return self.priority
+    
+
+
+
+# signals
+
+@receiver(post_save, sender=Task.assigned_to.through)
+def notify_emp_on_task_creation(sender, instance, action , **kwargs):
+    if action == "post_add":
+        assigned_to_emails = [emp.email for emp in instance.assigned_to.all()]
+        send_mail(
+            f"New Task Assigned: {instance.title}",
+            f"Task Description: \n{instance.description}",
+            "rafiul.blf23@gmail.com",
+            assigned_to_emails,
+            fail_silently=False
+        )
